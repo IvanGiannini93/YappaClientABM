@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yappa.clientsabm.dto.ClientDto;
+import com.yappa.clientsabm.mapper.ClientMapper;
 import com.yappa.clientsabm.model.Client;
 import com.yappa.clientsabm.repository.ClientRepository;
 import com.yappa.clientsabm.service.ClientService;
@@ -17,10 +19,12 @@ public class ClientServiceImpl implements ClientService{
 
 	@Autowired ClientRepository repository;
 	
+	@Autowired ClientMapper mapper;
+	
 	
 	@Override
 	@Transactional
-	public void insert(Client client) {
+	public void save(Client client) {
 		repository.save(client);
 	}
 
@@ -41,9 +45,11 @@ public class ClientServiceImpl implements ClientService{
 	}
 
 	@Override
-	public void update(Integer id) {
-		
-		
+	@Transactional
+	public void update(Integer id, ClientDto clientUpdate) {
+		Client myClient = get(id);
+		mapper.updateClientFromDto(clientUpdate, myClient);
+		save(myClient);
 	}
 
 }
