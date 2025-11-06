@@ -1,3 +1,17 @@
 spring:
   application:
     name: clients-abm
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/clientabm
+    username: CLIENT_ABM
+    password: CLIENT_ABM
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    open-in-view: false
+
+logging:
+  level:
+    org.hibernate.SQL: off
+    org.hibernate.type.descriptor.sql.BasicBinder: off
