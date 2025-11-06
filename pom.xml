@@ -12,7 +12,7 @@
 	<artifactId>clients-abm</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>clients-abm</name>
-	<description>API REST para gestión de usuarios (ABM)</description>
+	<description>API REST para gestión de clientes (ABM)</description>
 	<url/>
 	<licenses>
 		<license/>
