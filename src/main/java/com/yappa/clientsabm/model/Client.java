@@ -2,6 +2,7 @@ package com.yappa.clientsabm.model;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -11,16 +12,21 @@ public class Client {
 	@Id
 	private Integer id;
 	
+	@Column(name = "firstname")
 	private String firstName;
 	
+	@Column(name = "lastname")
 	private String lastName;
 	
+	@Column(name = "birthdate")
 	private LocalDate birthDate;
 	
+	@Column(name = "taxid")
 	private String taxId;
 	
 	private String address;
 	
+	@Column(name = "telephonenumber")
 	private String telephoneNumber;
 	
 	private String email;
