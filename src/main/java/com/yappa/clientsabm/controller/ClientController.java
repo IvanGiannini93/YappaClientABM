@@ -9,13 +9,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.yappa.clientsabm.dto.ClientDto;
 import com.yappa.clientsabm.model.Client;
 import com.yappa.clientsabm.service.ClientService;
 
-@RestController("/clients")
+
+@RestController
+@RequestMapping("/clients")
 public class ClientController {
 
 	@Autowired
@@ -36,14 +40,14 @@ public class ClientController {
 		try {
 			return ResponseEntity.ok(service.get(id));
 		} catch (Exception e) {
-			e.printStackTrace();
-			return ResponseEntity.notFound().build();
+			System.out.println(e.getMessage());
+			return ResponseEntity.noContent().build();
 		}
 		
 	}
 	
-	@GetMapping("/{firstName}")
-	public ResponseEntity<List<Client>> search(@PathVariable String firstName){
+	@GetMapping("/search")
+	public ResponseEntity<List<Client>> search(@RequestParam String firstName){
 		try {
 			return ResponseEntity.ok(service.search(firstName));
 		} catch (Exception e) {
