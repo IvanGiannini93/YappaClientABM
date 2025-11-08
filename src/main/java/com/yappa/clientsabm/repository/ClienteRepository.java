@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.yappa.clientsabm.model.Client;
+import com.yappa.clientsabm.model.Cliente;
 
 @Repository
-public interface ClientRepository extends JpaRepository<Client, Integer>{
+public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
 
-	List<Client> findByFirstName(String firstName);
+	List<Cliente> findByNombres(String nombres);
 }

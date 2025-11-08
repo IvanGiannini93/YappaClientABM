@@ -13,20 +13,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.yappa.clientsabm.dto.ClientDto;
-import com.yappa.clientsabm.model.Client;
-import com.yappa.clientsabm.service.ClientService;
+import com.yappa.clientsabm.dto.ClienteDto;
+import com.yappa.clientsabm.model.Cliente;
+import com.yappa.clientsabm.service.ClienteService;
 
 
 @RestController
-@RequestMapping("/clients")
-public class ClientController {
+@RequestMapping("/clientes")
+public class ClienteController {
 
 	@Autowired
-	private ClientService service;
+	private ClienteService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Client>> getAll(){
+	public ResponseEntity<List<Cliente>> getAll(){
 		try {
 			return ResponseEntity.ok(service.getAll());
 		} catch (Exception e) {
@@ -36,7 +36,7 @@ public class ClientController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Client> get(@PathVariable Integer id) {
+	public ResponseEntity<Cliente> get(@PathVariable Integer id) {
 		try {
 			return ResponseEntity.ok(service.get(id));
 		} catch (Exception e) {
@@ -47,9 +47,9 @@ public class ClientController {
 	}
 	
 	@GetMapping("/search")
-	public ResponseEntity<List<Client>> search(@RequestParam String firstName){
+	public ResponseEntity<List<Cliente>> search(@RequestParam String nombres){
 		try {
-			return ResponseEntity.ok(service.search(firstName));
+			return ResponseEntity.ok(service.search(nombres));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.notFound().build();
@@ -57,18 +57,18 @@ public class ClientController {
 	}
 	
 	@PostMapping
-	public void insert(@RequestBody Client client) {
+	public void insert(@RequestBody Cliente cliente) {
 		try {
-			service.save(client);			
+			service.save(cliente);			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
 	@PutMapping("/{id}")
-	public void update(@PathVariable Integer id ,@RequestBody ClientDto clientDto) {
+	public void update(@PathVariable Integer id ,@RequestBody ClienteDto clienteDto) {
 		try {
-			service.update(id, clientDto);
+			service.update(id, clienteDto);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
