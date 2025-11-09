@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.yappa</groupId>
 	<artifactId>clients-abm</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>clients-abm</name>
 	<description>API REST para gestión de clientes (ABM)</description>
 	<url/>
