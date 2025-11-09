@@ -9,11 +9,11 @@ public interface ClienteService {
 
 	public void save(ClienteDto clienteDto);
 	
-	public Cliente get(Integer id);
+	public ClienteDto get(Integer id);
 	
-	public List<Cliente> getAll();
+	public List<ClienteDto> getAll();
 	
-	public List<Cliente> search(String nombres);
+	public List<ClienteDto> search(String nombres);
 	
 	public void update(Integer id, ClienteDto clienteUpdate);
 }

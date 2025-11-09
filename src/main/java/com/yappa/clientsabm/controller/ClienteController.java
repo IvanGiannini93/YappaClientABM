@@ -28,7 +28,7 @@ public class ClienteController {
 	private ClienteService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Cliente>> getAll(){
+	public ResponseEntity<List<ClienteDto>> getAll(){
 		try {
 			return ResponseEntity.ok(service.getAll());
 		} catch (Exception e) {
@@ -38,7 +38,7 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Cliente> get(@PathVariable Integer id) {
+	public ResponseEntity<ClienteDto> get(@PathVariable Integer id) {
 		try {
 			return ResponseEntity.ok(service.get(id));
 		} catch (Exception e) {
@@ -49,7 +49,7 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/search")
-	public ResponseEntity<List<Cliente>> search(@RequestParam String nombres){
+	public ResponseEntity<List<ClienteDto>> search(@RequestParam String nombres){
 		try {
 			return ResponseEntity.ok(service.search(nombres));
 		} catch (Exception e) {

@@ -1,6 +1,8 @@
 package com.yappa.clientsabm.service.impl;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,26 +37,34 @@ public class ClienteServiceImpl implements ClienteService{
 	}
 
 	@Override
-	public Cliente get(Integer id) {
-		return repository.findById(id)
-				.orElseThrow(() -> new EntityNotFoundException("Cliente not found with id: " + id));
+	public ClienteDto get(Integer id) {
+		Cliente cliente = repository.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException("No existe un cliente con id: " + id));
+		return new ClienteDto(cliente);
 	}
 
 	@Override
-	public List<Cliente> getAll() {
-		return repository.findAll();
+	public List<ClienteDto> getAll() {
+		List<Cliente> clientes = repository.findAll();
+		return clientes.stream()
+				.map(ClienteDto::new)
+				.collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Cliente> search(String nombres) {
-		return repository.findByNombres(nombres);
+	public List<ClienteDto> search(String nombres) {
+		List<Cliente> clientes = repository.findByNombres(nombres);
+		return clientes.stream()
+				.map(ClienteDto::new)
+				.collect(Collectors.toList());
 	}
 
 	@Override
 	@Transactional
 	public void update(Integer id, ClienteDto clienteUpdate) {
 		try{
-			Cliente clienteActual = get(id);
+			Cliente clienteActual = repository.findById(id)
+					.orElseThrow(() -> new EntityNotFoundException("No existe un cliente con id: " + id));
 			mapper.updateClienteFromDto(clienteUpdate, clienteActual);
 			repository.save(clienteActual);
 		} catch (Exception e) {
