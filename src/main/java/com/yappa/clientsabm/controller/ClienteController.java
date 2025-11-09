@@ -59,9 +59,9 @@ public class ClienteController {
 	}
 	
 	@PostMapping
-	public void insert(@Valid @RequestBody Cliente cliente) {
+	public void insert(@Valid @RequestBody ClienteDto clienteDto) {
 		try {
-			service.save(cliente);			
+			service.save(clienteDto);			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -72,7 +72,7 @@ public class ClienteController {
 		try {
 			service.update(id, clienteDto);
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 	}
 }

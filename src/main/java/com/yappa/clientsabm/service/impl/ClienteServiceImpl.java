@@ -17,15 +17,21 @@ import jakarta.transaction.Transactional;
 @Service
 public class ClienteServiceImpl implements ClienteService{
 
-	@Autowired ClienteRepository repository;
+	@Autowired 
+	private ClienteRepository repository;
 	
-	@Autowired ClienteMapper mapper;
+	@Autowired 
+	private ClienteMapper mapper;
 	
 	
 	@Override
 	@Transactional
-	public void save(Cliente cliente) {
-		repository.save(cliente);
+	public void save(ClienteDto clienteDto) {
+		try {
+			repository.save(new Cliente(clienteDto));
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	@Override
@@ -47,9 +53,13 @@ public class ClienteServiceImpl implements ClienteService{
 	@Override
 	@Transactional
 	public void update(Integer id, ClienteDto clienteUpdate) {
-		Cliente clienteActual = get(id);
-		mapper.updateClienteFromDto(clienteUpdate, clienteActual);
-		save(clienteActual);
+		try{
+			Cliente clienteActual = get(id);
+			mapper.updateClienteFromDto(clienteUpdate, clienteActual);
+			repository.save(clienteActual);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }

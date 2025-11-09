@@ -2,8 +2,14 @@ package com.yappa.clientsabm.model;
 
 import java.time.LocalDate;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import com.yappa.clientsabm.dto.ClienteDto;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -12,6 +18,7 @@ import jakarta.persistence.Table;
 public class Cliente {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	private String nombres;
@@ -42,6 +49,16 @@ public class Cliente {
 		this.direccion = direccion;
 		this.telefonoCelular = telefonoCelular;
 		this.email = email;
+	}
+	
+	public Cliente(ClienteDto clienteDto) {
+		this.nombres = clienteDto.getNombres();
+		this.apellidos = clienteDto.getApellidos();
+		this.fechaDeNacimiento = clienteDto.getFechaDeNacimiento();
+		this.cuit = clienteDto.getCuit();
+		this.direccion = clienteDto.getDireccion();
+		this.telefonoCelular = clienteDto.getTelefonoCelular();
+		this.email = clienteDto.getEmail();
 	}
 
 

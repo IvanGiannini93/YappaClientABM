@@ -7,7 +7,7 @@ import com.yappa.clientsabm.model.Cliente;
 
 public interface ClienteService {
 
-	public void save(Cliente cliente);
+	public void save(ClienteDto clienteDto);
 	
 	public Cliente get(Integer id);
 	
