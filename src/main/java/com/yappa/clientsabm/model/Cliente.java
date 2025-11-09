@@ -2,8 +2,6 @@ package com.yappa.clientsabm.model;
 
 import java.time.LocalDate;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import com.yappa.clientsabm.dto.ClienteDto;
 
 import jakarta.persistence.Column;

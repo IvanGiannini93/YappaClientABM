@@ -1,7 +1,6 @@
 package com.yappa.clientsabm.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
