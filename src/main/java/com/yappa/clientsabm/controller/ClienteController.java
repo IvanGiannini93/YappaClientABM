@@ -17,6 +17,8 @@ import com.yappa.clientsabm.dto.ClienteDto;
 import com.yappa.clientsabm.model.Cliente;
 import com.yappa.clientsabm.service.ClienteService;
 
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/clientes")
@@ -57,7 +59,7 @@ public class ClienteController {
 	}
 	
 	@PostMapping
-	public void insert(@RequestBody Cliente cliente) {
+	public void insert(@Valid @RequestBody Cliente cliente) {
 		try {
 			service.save(cliente);			
 		} catch (Exception e) {
@@ -66,7 +68,7 @@ public class ClienteController {
 	}
 	
 	@PutMapping("/{id}")
-	public void update(@PathVariable Integer id ,@RequestBody ClienteDto clienteDto) {
+	public void update(@PathVariable Integer id ,@Valid @RequestBody ClienteDto clienteDto) {
 		try {
 			service.update(id, clienteDto);
 		} catch (Exception e) {
