@@ -10,5 +10,5 @@ import com.yappa.clientsabm.model.Cliente;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
 
-	List<Cliente> findByNombres(String nombres);
+	List<Cliente> findByNombresContainingIgnoreCase(String nombres);
 }

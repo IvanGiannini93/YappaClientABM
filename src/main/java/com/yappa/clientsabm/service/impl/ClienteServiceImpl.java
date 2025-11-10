@@ -59,7 +59,7 @@ public class ClienteServiceImpl implements ClienteService{
 
 	@Override
 	public List<ClienteDto> search(String nombres) {
-		List<Cliente> clientes = repository.findByNombres(nombres);
+		List<Cliente> clientes = repository.findByNombresContainingIgnoreCase(nombres);
 		LOG.debug("Clientes encontrados: {}", clientes.size());
 		return clientes.stream()
 				.map(ClienteDto::new)
