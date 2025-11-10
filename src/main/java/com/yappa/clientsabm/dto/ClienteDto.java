@@ -13,6 +13,8 @@ import jakarta.validation.constraints.Pattern;
 
 public class ClienteDto {
 	
+	private Integer id;
+	
 	@NotBlank(message = "El nombre es obligatorio")
 	private String nombres;
 	
@@ -41,14 +43,25 @@ public class ClienteDto {
 	
 	public ClienteDto() {}
 	
-	public ClienteDto(Cliente client) {
-		this.nombres = client.getNombres();
-		this.apellidos = client.getApellidos();
-		this.fechaDeNacimiento = client.getFechaDeNacimiento();
-		this.cuit = client.getCuit();
-		this.direccion = client.getDireccion();
-		this.telefonoCelular = client.getTelefonoCelular();
-		this.email = client.getEmail();
+	public ClienteDto(Cliente cliente) {
+		this.id = cliente.getId();
+		this.nombres = cliente.getNombres();
+		this.apellidos = cliente.getApellidos();
+		this.fechaDeNacimiento = cliente.getFechaDeNacimiento();
+		this.cuit = cliente.getCuit();
+		this.direccion = cliente.getDireccion();
+		this.telefonoCelular = cliente.getTelefonoCelular();
+		this.email = cliente.getEmail();
+	}
+	
+	
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNombres() {
